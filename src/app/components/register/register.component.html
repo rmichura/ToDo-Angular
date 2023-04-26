@@ -1,1 +1,56 @@
-<p>register works!</p>
+<div class="container-fluid">
+  <form (ngSubmit)="submit()" [formGroup]="form">
+    <div class="d-flex align-items-center justify-content-center height">
+      <div class="bg-light col-md-5">
+        <div class="m-3 p-2">
+          <label for="email" class="form-label text-uppercase">E-mail address</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            placeholder="Name@example.com"
+            formControlName="email"
+            name="email"
+          >
+          <ng-container *ngIf="form.controls?.['email']?.invalid && form.controls?.['email']?.touched">
+            <div class="text-danger mt-1" *ngIf="form.controls?.['email']?.errors?.['required']">Field required</div>
+            <div class="text-danger mt-1" *ngIf="form.controls?.['email']?.errors?.['email']">E-mail must be correct
+            </div>
+          </ng-container>
+        </div>
+        <div class="m-3 p-2">
+          <label class="form-label text-uppercase">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password"
+            name="password"
+          >
+          <ng-container *ngIf="form.controls?.['password']?.invalid && form.controls?.['password']?.touched">
+            <div class="text-danger mt-1">Field required</div>
+          </ng-container>
+        </div>
+        <div class="m-3 p-2">
+          <label class="form-label text-uppercase">Confirm Password</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirm Password"
+            formControlName="confirmPassword"
+            name="confirmPassword"
+          >
+          <ng-container
+            *ngIf="form.controls?.['confirmPassword']?.invalid && form.controls?.['confirmPassword']?.touched">
+            <div class="text-danger mt-1">Field required</div>
+          </ng-container>
+        </div>
+        <div class="text-end p-2 me-3">
+          <button class="btn btn-danger m-2" type="reset">Reset</button>
+          <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {LoginRequest, LoginResponse} from "../interfaces/login-data.interface";
+import {LoginRequest, LoginResponse, RegisterRequest, RegisterResponse} from "../interfaces/auth-data.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,13 @@ export class AuthService {
     return this.httpClient.post(`${this.URL}logout`, body).pipe(
       tap(() => localStorage.removeItem('LOCALSTORAGE_TOKEN_KEY')),
       tap(() => console.log("Poprawne się wylogowałeś"))
+    )
+  }
+
+  register(body: RegisterRequest): Observable<RegisterResponse> {
+    return this.httpClient.post<RegisterResponse>(`${this.URL}register`, body).pipe(
+      tap((token: RegisterResponse) => localStorage.setItem('LOCALSTORAGE_TOKEN_KEY', token.token)),
+      tap(() => console.log("Poprawna rejstracja"))
     )
   }
 }
