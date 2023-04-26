@@ -1,18 +1,33 @@
 <ng-container>
   <div class="container mt-5">
     <div class="list-group">
-      <div class="d-flex align-items-center" *ngFor="let task of tasks">
-        <button
-          class="btn btn-outline-success h-25"
-          (click)="doneTask(task)"><i class="bi bi-check-lg"></i>
-        </button>
-        <button
-          type="button"
-          class="list-group-item list-group-item-action m-2"
-          (click)="detailsTask(task)"
-        >
-          {{ task.name }}
-        </button>
+      <div class="d-flex align-items-center" *ngFor="let task of tasks;  let i = index">
+        <ng-container *ngIf="task.done">
+          <button
+            class="btn btn-success h-25"
+            (click)="doneTask(task)" disabled><i class="bi bi-check-lg"></i>
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action m-2"
+            (click)="detailsTask(task)"
+          >
+            <s>{{ task.name }}</s>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="!task.done">
+          <button
+            class="btn btn-outline-success h-25"
+            (click)="doneTask([task, i])"><i class="bi bi-check-lg"></i>
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action m-2"
+            (click)="detailsTask(task)"
+          >
+            {{ task.name }}
+          </button>
+        </ng-container>
       </div>
       <div class="d-flex me-2">
         <input

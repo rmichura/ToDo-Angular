@@ -22,8 +22,9 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  doneTask(task: Task): void {
-    console.log(task)
+  doneTask([task, index]: any): void {
+    const updateData: Task = {id: task.id, name: task.name, done: true}
+    this.taskService.updateTask(index, updateData).subscribe()
   }
 
   detailsTask(task: Task): void {
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit {
 
   addTask(): void {
     if (this.nameTask) {
-      const newTask: Task = {name: this.nameTask, done: false}
+      const newTask: Task = {id: this.tasks.length + 1, name: this.nameTask, done: false}
       this.taskService.postTask(newTask).subscribe((): string => this.nameTask = '')
     }
   }

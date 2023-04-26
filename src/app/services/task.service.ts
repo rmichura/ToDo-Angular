@@ -16,7 +16,13 @@ export class TaskService {
     return of(this.taskMockService.tasksMockData)
   }
 
-  postTask(body: Task): Observable<unknown> {
+  postTask(body: Task): Observable<number> {
     return of(this.taskMockService.tasksMockData.push(body))
+  }
+
+  updateTask(index: number, body: Task): Observable<number> {
+    this.taskMockService.tasksMockData.splice(index, 1)
+    const update: Task = {id: body.id, name: body.name, done: body.done}
+    return of(this.taskMockService.tasksMockData.push(update))
   }
 }
