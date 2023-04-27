@@ -21,6 +21,10 @@ export class HomeComponent implements OnInit {
 
   formModal: any;
 
+  searchValue: string = ''
+
+  selectedValue: string = ''
+
   constructor(private taskService: TaskService) {
   }
 
