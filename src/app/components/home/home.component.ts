@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Task} from "../../interfaces/tasks-data.interface";
 import {TaskService} from "../../services/task.service";
 
+declare const window: WindowEventHandlersEventMap | any;
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,13 +15,22 @@ export class HomeComponent implements OnInit {
 
   nameTask: string = ''
 
+  indexTask: number | undefined
+
+  detailsTask: Task | undefined;
+
+  formModal: any;
+
   constructor(private taskService: TaskService) {
   }
 
-  ngOnInit() {
-    this.taskService.getTask().subscribe((res: Task[]) => {
+  ngOnInit(): void {
+    this.taskService.getTask().subscribe((res: Task[]): void => {
       this.tasks = res
     })
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('detailsModal')
+    )
   }
 
   doneTask([task, index]: any): void {
@@ -27,14 +38,16 @@ export class HomeComponent implements OnInit {
     this.taskService.updateTask(index, updateData).subscribe()
   }
 
-  detailsTask(task: Task): void {
-    console.log(task)
-  }
-
   addTask(): void {
     if (this.nameTask) {
       const newTask: Task = {id: this.tasks.length + 1, name: this.nameTask, done: false}
       this.taskService.postTask(newTask).subscribe((): string => this.nameTask = '')
     }
+  }
+
+  openModal([task, index]: any): void {
+    this.detailsTask = task
+    this.indexTask = index
+    this.formModal.show();
   }
 }

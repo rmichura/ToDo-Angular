@@ -11,6 +11,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./services/auth.service";
+import {ModalWindowComponent} from './components/home/modal-window/modal-window.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,14 @@ import {AuthService} from "./services/auth.service";
     PageNotFoundComponent,
     HomeComponent,
     RegisterComponent,
+    ModalWindowComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

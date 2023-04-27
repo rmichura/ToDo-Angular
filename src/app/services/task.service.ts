@@ -22,7 +22,10 @@ export class TaskService {
 
   updateTask(index: number, body: Task): Observable<number> {
     this.taskMockService.tasksMockData.splice(index, 1)
-    const update: Task = {id: body.id, name: body.name, done: body.done}
-    return of(this.taskMockService.tasksMockData.push(update))
+    return of(this.taskMockService.tasksMockData.push(body))
+  }
+
+  removeTask(index: number): Observable<Task[]> {
+    return of(this.taskMockService.tasksMockData.splice(index, 1))
   }
 }

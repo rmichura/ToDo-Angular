@@ -10,7 +10,7 @@
           <button
             type="button"
             class="list-group-item list-group-item-action m-2"
-            (click)="detailsTask(task)"
+            (click)="openModal([task, i])"
           >
             <s>{{ task.name }}</s>
           </button>
@@ -23,7 +23,7 @@
           <button
             type="button"
             class="list-group-item list-group-item-action m-2"
-            (click)="detailsTask(task)"
+            (click)="openModal([task, i])"
           >
             {{ task.name }}
           </button>
@@ -42,4 +42,9 @@
       </div>
     </div>
   </div>
+  <app-modal-window
+    [nameTask]="detailsTask?.name"
+    [indexTask]="indexTask"
+    [detailsTask]="detailsTask"
+  ></app-modal-window>
 </ng-container>
