@@ -6,8 +6,7 @@ declare const window: WindowEventHandlersEventMap | any;
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
 
@@ -38,14 +37,19 @@ export class HomeComponent implements OnInit {
   }
 
   doneTask([task, index]: any): void {
-    const updateData: Task = {id: task.id, name: task.name, done: true}
-    this.taskService.updateTask(index, updateData).subscribe()
+    task.done = true
+    this.taskService.updateTask(index, task).subscribe()
   }
 
   addTask(): void {
     if (this.nameTask) {
       const newTask: Task = {id: this.tasks.length + 1, name: this.nameTask, done: false}
-      this.taskService.postTask(newTask).subscribe((): string => this.nameTask = '')
+      this.taskService.postTask(newTask).subscribe(() => {
+        this.tasks.sort(function (a, b) {
+          return a.done > b.done ? 1 : -1
+        })
+        this.nameTask = ''
+      })
     }
   }
 

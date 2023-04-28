@@ -4,8 +4,7 @@ import {TaskService} from "../../../services/task.service";
 
 @Component({
   selector: 'app-modal-window',
-  templateUrl: './modal-window.component.html',
-  styleUrls: ['./modal-window.component.scss']
+  templateUrl: './modal-window.component.html'
 })
 export class ModalWindowComponent {
 

@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {LoginFormService} from "./form/login-form.service";
@@ -11,7 +11,7 @@ import {FormGroup} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
-  form: any
+  form: FormGroup | any
 
   constructor(
     private loginService: AuthService,
@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.loginFormService.createFormGroup()
-    console.log(this.form)
   }
 
   submit(): void {
