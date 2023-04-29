@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {catchError, Observable, of, tap} from "rxjs";
+import {Injectable,} from '@angular/core';
+import {catchError, Observable, tap, throwError} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {LoginRequest, LoginResponse, RegisterRequest, RegisterResponse} from "../interfaces/auth-data.interface";
 
@@ -19,7 +19,7 @@ export class AuthService {
     return this.httpClient.post<LoginResponse>(`${this.URL}login`, body).pipe(
       tap((token: LoginResponse) => this.setTokenExpiresDate(token.token)),
       catchError((error) => {
-        return of(error)
+        return throwError(error);
       })
     )
   }
@@ -35,7 +35,7 @@ export class AuthService {
         localStorage.removeItem('EXPIRES_DATE')
       }),
       catchError((error) => {
-        return of(error)
+        return throwError(error);
       })
     )
   }
@@ -44,7 +44,7 @@ export class AuthService {
     return this.httpClient.post<RegisterResponse>(`${this.URL}register`, body).pipe(
       tap((token: RegisterResponse) => this.setTokenExpiresDate(token.token)),
       catchError((error) => {
-        return of(error)
+        return throwError(error);
       })
     )
   }
