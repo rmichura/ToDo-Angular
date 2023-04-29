@@ -21,11 +21,11 @@ export class ModalWindowComponent {
   detailsTask: Task | any;
 
   update(): void {
-    this.detailsTask.name = this.nameTask
-    this.taskService.updateTask(this.indexTask, this.detailsTask).subscribe()
+    this.detailsTask.name = this.nameTask;
+    this.taskService.updateTask(this.indexTask, this.detailsTask).subscribe();
   }
 
   remove(): void {
-    this.taskService.removeTask(this.indexTask).subscribe()
+    this.taskService.removeTask(this.indexTask).subscribe();
   }
 }

@@ -11,7 +11,7 @@ import {FormGroup} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup | any
+  form: FormGroup | any;
 
   constructor(
     private loginService: AuthService,
@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.loginFormService.createFormGroup()
+    this.form = this.loginFormService.createFormGroup();
   }
 
   submit(): void {
     this.loginService.login(this.form.value).subscribe(() => {
-      this.router.navigate(['/home'])
-    })
+      this.router.navigate(['/home']);
+    });
   }
 }

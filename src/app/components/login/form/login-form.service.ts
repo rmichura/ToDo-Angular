@@ -13,6 +13,6 @@ export class LoginFormService {
     return this.fb.group({
       email: this.fb.control('', [Validators.required, Validators.email]),
       password: this.fb.control('', [Validators.required])
-    })
+    });
   }
 }

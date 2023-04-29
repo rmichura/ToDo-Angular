@@ -26,8 +26,8 @@ export class RegisterComponent implements OnInit {
   submit(): void {
     if (this.form.value.password === this.form.value.confirmPassword) {
       this.loginService.register(this.form.value).subscribe(() => {
-        this.router.navigate(['/home'])
-      })
+        this.router.navigate(['/home']);
+      });
     }
   }
 }

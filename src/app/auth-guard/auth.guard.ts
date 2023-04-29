@@ -15,11 +15,10 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (localStorage.getItem('LOCALSTORAGE_TOKEN_KEY') && this.store.getAccess()) {
-      return true
-    } else {
-      this.router.navigate(['/login'])
-      return false
+    if (localStorage.getItem('LOCALSTORAGE_TOKEN_KEY') && this.store.getAccess()) return true;
+    else {
+      this.router.navigate(['/login']);
+      return false;
     }
   }
 }

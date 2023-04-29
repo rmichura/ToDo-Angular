@@ -14,6 +14,6 @@ export class RegisterFormService {
       email: this.fb.control('', [Validators.required, Validators.email]),
       password: this.fb.control('', [Validators.required]),
       confirmPassword: this.fb.control('', [Validators.required])
-    })
+    });
   }
 }

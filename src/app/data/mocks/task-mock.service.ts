@@ -17,5 +17,5 @@ export class TaskMockService {
       name: "Wash the dishes",
       done: true
     }
-  ]
+  ];
 }

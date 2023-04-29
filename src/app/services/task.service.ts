@@ -17,7 +17,7 @@ export class TaskService {
       catchError((error) => {
         return throwError(error);
       })
-    )
+    );
   }
 
   postTask(body: Task): Observable<number> {
@@ -25,16 +25,16 @@ export class TaskService {
       catchError((error) => {
         return throwError(error);
       })
-    )
+    );
   }
 
   updateTask(index: number, body: Task): Observable<number> {
-    this.taskMockService.tasksMockData.splice(index, 1)
+    this.taskMockService.tasksMockData.splice(index, 1);
     return of(this.taskMockService.tasksMockData.push(body)).pipe(
       catchError((error) => {
         return throwError(error);
       })
-    )
+    );
   }
 
   removeTask(index: number): Observable<Task[]> {
@@ -42,6 +42,6 @@ export class TaskService {
       catchError((error) => {
         return throwError(error);
       })
-    )
+    );
   }
 }
